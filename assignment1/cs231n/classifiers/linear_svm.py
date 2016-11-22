@@ -35,9 +35,9 @@ def svm_loss_naive(W, X, y, reg):
       margin = scores[j] - correct_class_score + 1 # note delta = 1
       if margin > 0:
         diff_count += 1
-        dW[:, j] += X[i] # gradient update for incorrect rows
+        dW[:, j] += X[i] # gradient update for incorrect rows. for incorrect rows in W, they will form only Sj,and dL/dSj=+1
         loss += margin
-    # gradient update for correct row
+    # gradient update for correct row.for correct rows in W, they will form only Sy[i],and dL/dSy[i]=-1
     dW[:, y[i]] += -diff_count * X[i]
 
   # Right now the loss is a sum over all training examples, but we want it
